@@ -1,0 +1,8 @@
+# generated json output
+manifests*/
+
+# tutorial working dir
+tutorial/
+
+# jsonnet bundler vendored library
+vendor/
