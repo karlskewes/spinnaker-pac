@@ -1,0 +1,374 @@
+{
+   "application-myapp": {
+      "cloudProviders": "kubernetes",
+      "description": "myapp",
+      "email": "me@example.com",
+      "name": "myapp",
+      "permissions": {
+         "EXECUTE": [
+            "product team",
+            "site reliability engineering"
+         ],
+         "READ": [
+            "product team",
+            "site reliability engineering"
+         ],
+         "WRITE": [
+            "site reliability engineering"
+         ]
+      },
+      "user": "me@example.com"
+   },
+   "pipeline-myapp-deploy": {
+      "application": "myapp",
+      "expectedArtifacts": [
+         {
+            "defaultArtifact": {
+               "artifactAccount": "example-docker-acc",
+               "kind": "default.docker",
+               "name": "index.docker.io/myorg/myapp",
+               "reference": "index.docker.io/myorg/myapp",
+               "type": "docker/image"
+            },
+            "displayName": "index.docker.io/myorg/myapp",
+            "id": "index.docker.io/myorg/myapp",
+            "matchArtifact": {
+               "artifactAccount": "example-docker-acc",
+               "kind": "docker",
+               "name": "index.docker.io/myorg/myapp",
+               "type": "docker/image"
+            },
+            "useDefaultArtifact": false,
+            "usePriorArtifact": true
+         },
+         {
+            "defaultArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "default.gitlab",
+               "name": "stg/us-east-1/infra/myapp-integration-tests-job.yaml",
+               "reference": "https://gitlab.com/api/v4/projects/myorg%2Fmyparent%2Fmyproject/repository/files/stg%2Fus-east-1%2Finfra%2Fmyapp-integration-tests-job.yaml/raw",
+               "type": "gitlab/file",
+               "version": "master"
+            },
+            "displayName": "stg/us-east-1/infra/myapp-integration-tests-job.yaml",
+            "id": "stg/us-east-1/infra/myapp-integration-tests-job.yaml",
+            "matchArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "gitlab",
+               "name": "stg/us-east-1/infra/myapp-integration-tests-job.yaml",
+               "type": "gitlab/file"
+            },
+            "useDefaultArtifact": true,
+            "usePriorArtifact": false
+         },
+         {
+            "defaultArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "default.gitlab",
+               "name": "prd/ap-southeast-2/infra/myapp-setup.yaml",
+               "reference": "https://gitlab.com/api/v4/projects/myorg%2Fmyparent%2Fmyproject/repository/files/prd%2Fap-southeast-2%2Finfra%2Fmyapp-setup.yaml/raw",
+               "type": "gitlab/file",
+               "version": "master"
+            },
+            "displayName": "prd/ap-southeast-2/infra/myapp-setup.yaml",
+            "id": "prd/ap-southeast-2/infra/myapp-setup.yaml",
+            "matchArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "gitlab",
+               "name": "prd/ap-southeast-2/infra/myapp-setup.yaml",
+               "type": "gitlab/file"
+            },
+            "useDefaultArtifact": true,
+            "usePriorArtifact": false
+         },
+         {
+            "defaultArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "default.gitlab",
+               "name": "prd/us-east-1/infra/myapp-setup.yaml",
+               "reference": "https://gitlab.com/api/v4/projects/myorg%2Fmyparent%2Fmyproject/repository/files/prd%2Fus-east-1%2Finfra%2Fmyapp-setup.yaml/raw",
+               "type": "gitlab/file",
+               "version": "master"
+            },
+            "displayName": "prd/us-east-1/infra/myapp-setup.yaml",
+            "id": "prd/us-east-1/infra/myapp-setup.yaml",
+            "matchArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "gitlab",
+               "name": "prd/us-east-1/infra/myapp-setup.yaml",
+               "type": "gitlab/file"
+            },
+            "useDefaultArtifact": true,
+            "usePriorArtifact": false
+         },
+         {
+            "defaultArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "default.gitlab",
+               "name": "stg/us-east-1/infra/myapp-setup.yaml",
+               "reference": "https://gitlab.com/api/v4/projects/myorg%2Fmyparent%2Fmyproject/repository/files/stg%2Fus-east-1%2Finfra%2Fmyapp-setup.yaml/raw",
+               "type": "gitlab/file",
+               "version": "master"
+            },
+            "displayName": "stg/us-east-1/infra/myapp-setup.yaml",
+            "id": "stg/us-east-1/infra/myapp-setup.yaml",
+            "matchArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "gitlab",
+               "name": "stg/us-east-1/infra/myapp-setup.yaml",
+               "type": "gitlab/file"
+            },
+            "useDefaultArtifact": true,
+            "usePriorArtifact": false
+         },
+         {
+            "defaultArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "default.gitlab",
+               "name": "prd/ap-southeast-2/infra/myapp.yaml",
+               "reference": "https://gitlab.com/api/v4/projects/myorg%2Fmyparent%2Fmyproject/repository/files/prd%2Fap-southeast-2%2Finfra%2Fmyapp.yaml/raw",
+               "type": "gitlab/file",
+               "version": "master"
+            },
+            "displayName": "prd/ap-southeast-2/infra/myapp.yaml",
+            "id": "prd/ap-southeast-2/infra/myapp.yaml",
+            "matchArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "gitlab",
+               "name": "prd/ap-southeast-2/infra/myapp.yaml",
+               "type": "gitlab/file"
+            },
+            "useDefaultArtifact": true,
+            "usePriorArtifact": false
+         },
+         {
+            "defaultArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "default.gitlab",
+               "name": "prd/us-east-1/infra/myapp.yaml",
+               "reference": "https://gitlab.com/api/v4/projects/myorg%2Fmyparent%2Fmyproject/repository/files/prd%2Fus-east-1%2Finfra%2Fmyapp.yaml/raw",
+               "type": "gitlab/file",
+               "version": "master"
+            },
+            "displayName": "prd/us-east-1/infra/myapp.yaml",
+            "id": "prd/us-east-1/infra/myapp.yaml",
+            "matchArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "gitlab",
+               "name": "prd/us-east-1/infra/myapp.yaml",
+               "type": "gitlab/file"
+            },
+            "useDefaultArtifact": true,
+            "usePriorArtifact": false
+         },
+         {
+            "defaultArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "default.gitlab",
+               "name": "stg/us-east-1/infra/myapp.yaml",
+               "reference": "https://gitlab.com/api/v4/projects/myorg%2Fmyparent%2Fmyproject/repository/files/stg%2Fus-east-1%2Finfra%2Fmyapp.yaml/raw",
+               "type": "gitlab/file",
+               "version": "master"
+            },
+            "displayName": "stg/us-east-1/infra/myapp.yaml",
+            "id": "stg/us-east-1/infra/myapp.yaml",
+            "matchArtifact": {
+               "artifactAccount": "example-gitlab-acc",
+               "kind": "gitlab",
+               "name": "stg/us-east-1/infra/myapp.yaml",
+               "type": "gitlab/file"
+            },
+            "useDefaultArtifact": true,
+            "usePriorArtifact": false
+         }
+      ],
+      "id": "myapp-deploy",
+      "keepWaitingPipelines": true,
+      "limitConcurrent": true,
+      "name": "deploy",
+      "notifications": [
+         {
+            "address": "sre-deploys",
+            "level": "pipeline",
+            "message": {
+               "pipeline.complete": {
+                  "text": "Gitlab commit: <https://gitlab.com/myorg/myproject/-/${ trigger['artifacts'].?[type == 'docker/image'].![reference][0].replaceAll('.*:git-','') }|${ trigger['artifacts'].?[type == 'docker/image'].![reference][0].replaceAll('.*:git-','') }>"
+               },
+               "pipeline.failed": {
+                  "text": "Gitlab commit: <https://gitlab.com/myorg/myproject/-/${ trigger['artifacts'].?[type == 'docker/image'].![reference][0].replaceAll('.*:git-','') }|${ trigger['artifacts'].?[type == 'docker/image'].![reference][0].replaceAll('.*:git-','') }>"
+               },
+               "pipeline.starting": {
+                  "text": "Gitlab commit: <https://gitlab.com/myorg/myproject/-/${ trigger['artifacts'].?[type == 'docker/image'].![reference][0].replaceAll('.*:git-','') }|${ trigger['artifacts'].?[type == 'docker/image'].![reference][0].replaceAll('.*:git-','') }>"
+               }
+            },
+            "type": "slack",
+            "when": [
+               "pipeline.starting",
+               "pipeline.failed",
+               "pipeline.complete"
+            ]
+         }
+      ],
+      "parameterConfig": [ ],
+      "stages": [
+         {
+            "account": "stg-us-east-1-cluster-admin",
+            "alias": "runJob",
+            "cloudProvider": "kubernetes",
+            "credentials": "stg-us-east-1-cluster-admin",
+            "manifestArtifactId": "stg/us-east-1/infra/myapp-integration-tests-job.yaml",
+            "moniker": {
+               "app": "myapp"
+            },
+            "name": "JOB :: stg-us-east-1-cluster-admin :: infra/myapp-integration-tests-job.yaml",
+            "refId": "JOB :: stg-us-east-1-cluster-admin :: infra/myapp-integration-tests-job.yaml",
+            "requisiteStageRefIds": [
+               "stg-us-east-1-cluster-admin :: infra/myapp.yaml"
+            ],
+            "skipExpressionEvaluation": true,
+            "source": "artifact",
+            "type": "runJobManifest"
+         },
+         {
+            "account": "prd-ap-southeast-2-cluster-admin",
+            "alias": "runJob",
+            "cloudProvider": "kubernetes",
+            "credentials": "prd-ap-southeast-2-cluster-admin",
+            "manifestArtifactId": "prd/ap-southeast-2/infra/myapp-setup.yaml",
+            "moniker": {
+               "app": "myapp"
+            },
+            "name": "JOB :: prd-ap-southeast-2-cluster-admin :: infra/myapp-setup.yaml",
+            "refId": "JOB :: prd-ap-southeast-2-cluster-admin :: infra/myapp-setup.yaml",
+            "requisiteStageRefIds": [
+               "Manual Judgment"
+            ],
+            "skipExpressionEvaluation": true,
+            "source": "artifact",
+            "type": "runJobManifest"
+         },
+         {
+            "account": "prd-us-east-1-cluster-admin",
+            "alias": "runJob",
+            "cloudProvider": "kubernetes",
+            "credentials": "prd-us-east-1-cluster-admin",
+            "manifestArtifactId": "prd/us-east-1/infra/myapp-setup.yaml",
+            "moniker": {
+               "app": "myapp"
+            },
+            "name": "JOB :: prd-us-east-1-cluster-admin :: infra/myapp-setup.yaml",
+            "refId": "JOB :: prd-us-east-1-cluster-admin :: infra/myapp-setup.yaml",
+            "requisiteStageRefIds": [
+               "Manual Judgment"
+            ],
+            "skipExpressionEvaluation": true,
+            "source": "artifact",
+            "type": "runJobManifest"
+         },
+         {
+            "account": "stg-us-east-1-cluster-admin",
+            "alias": "runJob",
+            "cloudProvider": "kubernetes",
+            "credentials": "stg-us-east-1-cluster-admin",
+            "manifestArtifactId": "stg/us-east-1/infra/myapp-setup.yaml",
+            "moniker": {
+               "app": "myapp"
+            },
+            "name": "JOB :: stg-us-east-1-cluster-admin :: infra/myapp-setup.yaml",
+            "refId": "JOB :: stg-us-east-1-cluster-admin :: infra/myapp-setup.yaml",
+            "requisiteStageRefIds": [ ],
+            "skipExpressionEvaluation": true,
+            "source": "artifact",
+            "type": "runJobManifest"
+         },
+         {
+            "account": "prd-ap-southeast-2-cluster-admin",
+            "cloudProvider": "kubernetes",
+            "credentials": "prd-ap-southeast-2-cluster-admin",
+            "manifestArtifactId": "prd/ap-southeast-2/infra/myapp.yaml",
+            "moniker": {
+               "app": "myapp"
+            },
+            "name": "prd-ap-southeast-2-cluster-admin :: infra/myapp.yaml",
+            "refId": "prd-ap-southeast-2-cluster-admin :: infra/myapp.yaml",
+            "requisiteStageRefIds": [
+               "JOB :: prd-ap-southeast-2-cluster-admin :: infra/myapp-setup.yaml",
+               "JOB :: prd-us-east-1-cluster-admin :: infra/myapp-setup.yaml"
+            ],
+            "skipExpressionEvaluation": true,
+            "source": "artifact",
+            "type": "deployManifest"
+         },
+         {
+            "account": "prd-us-east-1-cluster-admin",
+            "cloudProvider": "kubernetes",
+            "credentials": "prd-us-east-1-cluster-admin",
+            "manifestArtifactId": "prd/us-east-1/infra/myapp.yaml",
+            "moniker": {
+               "app": "myapp"
+            },
+            "name": "prd-us-east-1-cluster-admin :: infra/myapp.yaml",
+            "refId": "prd-us-east-1-cluster-admin :: infra/myapp.yaml",
+            "requisiteStageRefIds": [
+               "JOB :: prd-ap-southeast-2-cluster-admin :: infra/myapp-setup.yaml",
+               "JOB :: prd-us-east-1-cluster-admin :: infra/myapp-setup.yaml"
+            ],
+            "skipExpressionEvaluation": true,
+            "source": "artifact",
+            "type": "deployManifest"
+         },
+         {
+            "account": "stg-us-east-1-cluster-admin",
+            "cloudProvider": "kubernetes",
+            "credentials": "stg-us-east-1-cluster-admin",
+            "manifestArtifactId": "stg/us-east-1/infra/myapp.yaml",
+            "moniker": {
+               "app": "myapp"
+            },
+            "name": "stg-us-east-1-cluster-admin :: infra/myapp.yaml",
+            "refId": "stg-us-east-1-cluster-admin :: infra/myapp.yaml",
+            "requisiteStageRefIds": [
+               "JOB :: stg-us-east-1-cluster-admin :: infra/myapp-setup.yaml"
+            ],
+            "skipExpressionEvaluation": true,
+            "source": "artifact",
+            "type": "deployManifest"
+         },
+         {
+            "failPipeline": true,
+            "instructions": "Promote to Production",
+            "judgmentInputs": [ ],
+            "name": "Manual Judgment",
+            "notifications": [
+               {
+                  "address": "sre-deploys",
+                  "level": "stage",
+                  "type": "slack",
+                  "when": [
+                     "manualJudgment"
+                  ]
+               }
+            ],
+            "refId": "Manual Judgment",
+            "requisiteStageRefIds": [
+               "JOB :: stg-us-east-1-cluster-admin :: infra/myapp-integration-tests-job.yaml"
+            ],
+            "sendNotifications": true,
+            "stageTimeoutMs": 86400000,
+            "type": "manualJudgment"
+         }
+      ],
+      "triggers": [
+         {
+            "account": "example-docker-acc",
+            "enabled": true,
+            "organization": "myorg",
+            "registry": "index.docker.io",
+            "repository": "myorg/myapp",
+            "runAsUser": "spinnaker-service-account@example.com",
+            "tag": "^git-.*$",
+            "type": "docker"
+         }
+      ]
+   }
+}

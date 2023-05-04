@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "dependencies": [
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/karlskewes/spin-libsonnet.git",
+          "subdir": ""
+        }
+      },
+      "version": "v0.1.0"
+    }
+  ],
+  "legacyImports": true
+}
