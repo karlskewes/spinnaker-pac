@@ -180,8 +180,8 @@ local spin = (import '../vendor/github.com/karlskewes/spin-libsonnet/spin.libson
       // teama edit accounts
       { name: 'prd-global-ec2-teama-edit', regions: ['ap-southeast-2', 'us-east-2'], keyPair: 'example-prd-global-spinnaker', labels: { stageBlock: 'production', cloudProvider: 'aws', cloud: 'aws', team: 'product', teama: true } },
       { name: 'prd-ap-southeast-2-eks-01-teama-edit', path: 'kubernetes/prd/ap-southeast-2-eks-01', labels: { stageBlock: 'production', cloudProvider: 'kubernetes', cloud: 'aws', team: 'product', teama: true, region: 'ap-southeast-2' } },
-      { name: 'prd-us-east-2-eks-01-teama-edit', path: 'kubernetes/prd/us-east-2-eks-01', labels: { stageBlock: 'production', cloudProvider: 'kubernetes', cloud: 'aws', team: 'product', teama: true, selfService: true, region: 'us-east-2' } },
-      { name: 'stg-ap-southeast-2-eks-01-teama-edit', path: 'kubernetes/stg/ap-southeast-2-eks-01', labels: { stageBlock: 'staging', cloudProvider: 'kubernetes', cloud: 'aws', team: 'product', teama: true, selfService: true, region: 'ap-southeast-2' } },
+      { name: 'prd-us-east-2-eks-01-teama-edit', path: 'kubernetes/prd/us-east-2-eks-01', labels: { stageBlock: 'production', cloudProvider: 'kubernetes', cloud: 'aws', team: 'product', teama: true, region: 'us-east-2' } },
+      { name: 'stg-ap-southeast-2-eks-01-teama-edit', path: 'kubernetes/stg/ap-southeast-2-eks-01', labels: { stageBlock: 'staging', cloudProvider: 'kubernetes', cloud: 'aws', team: 'product', teama: true, region: 'ap-southeast-2' } },
       { name: 'stg-global-ec2-teama-edit', regions: ['ap-southeast-2'], keyPair: 'example-stg-global-spinnaker', labels: { stageBlock: 'staging', cloudProvider: 'aws', cloud: 'aws', team: 'product', teama: true } },
     ],
   },

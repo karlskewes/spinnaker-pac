@@ -198,7 +198,7 @@ local defaults = {
       { name: 'prd-global-ec2-product-edit', regions: ['ap-southeast-2', 'us-east-1'], keyPair: 'example-prd-global-spinnaker', labels: { stageBlock: 'production', cloudProvider: 'aws', cloud: 'aws', team: 'product', product: true } },
       { name: 'prd-ap-southeast-2-product-edit', path: 'prd/ap-southeast-2', labels: { stageBlock: 'production', cloudProvider: 'kubernetes', cloud: 'aws', team: 'product', product: true, region: 'ap-southeast-2' } },
       { name: 'prd-us-east-1-product-edit', path: 'prd/us-east-1', labels: { stageBlock: 'production', cloudProvider: 'kubernetes', cloud: 'aws', team: 'product', product: true, region: 'us-east-1' } },
-      { name: 'stg-us-east-1-product-edit', path: 'stg/us-east-1', labels: { stageBlock: 'staging', cloudProvider: 'kubernetes', cloud: 'aws', team: 'product', product: true, selfService: true, region: 'us-east-1' } },
+      { name: 'stg-us-east-1-product-edit', path: 'stg/us-east-1', labels: { stageBlock: 'staging', cloudProvider: 'kubernetes', cloud: 'aws', team: 'product', product: true, region: 'us-east-1' } },
       { name: 'stg-global-ec2-product-edit', regions: ['us-east-1'], keyPair: 'example-stg-global-spinnaker', labels: { stageBlock: 'staging', cloudProvider: 'aws', cloud: 'aws', team: 'product', product: true } },
     ],
   },

@@ -136,7 +136,7 @@ In `example.jsonnet` the application deploy process is:
 2. Deploy application.
 3. Run integration test job.
 
-Each step requires a different archifact so there are three corresponding
+Each step requires a different artifact so there are three corresponding
 `type: 'gitlab'` artifacts defined with appropriate `stageOrder: 1|2|3` value.
 
 Key details:
@@ -145,7 +145,7 @@ Key details:
 - higher numbers schedule later in the Spinnaker Pipeline, ie: artifacts with
   `stageOrder: 2` execute after artifacts with `stageOrder: 1`
 - any artifacts with matching `stageOrder` values execute in the same
-  'column'/place, enabling fan in/out.
+  'column'/place, enabling fan out and fan in behaviour.
 
 You may be wondering about progressing the same artifact through environments
 (staging -> production), hint `stageBlock`. That's coming up in the next
@@ -198,16 +198,17 @@ bottom of the file.
 
 ## Changing stage block ordering
 
-We saw above that we can order stages in a group. Now we will look at how we
-order blocks of stages like when we might want to deploy to `staging` and then
-deploy to `production` in a single pipeline.
+We saw above that we can order stages. Sometimes we want to execute the same
+stage(s) but against two or more different targets sequentially.
 
-In this jsonnet we have the concept of a `stageBlock`.
+For example, deploy all artifacts to `staging` and then deploy/promote the same
+artifacts to `production`, all in a single pipeline.
 
-This can be any grouping of `stages` you like and enables our "staging ->
-production" flow above.
+Enter the `stageBlock`. In our example above `staging` and `production` are
+each a `stageBlock`. You can define your own `stageBlock` names.
 
-Our `example.jsonnet` file already has this configured.
+Our `example.jsonnet` file already has the `staging` and `production`
+`stageBlocks` configured.
 
 ```
 grep 'stageBlock' example.jsonnet | head
@@ -295,7 +296,74 @@ You can dive into the json to compare more specifically if you like.
 
 ## Target account selection
 
-TODO
+You can select what Spinnaker Provider Account to deploy with on a per artifact
+basis.
+
+Spinnaker platform teams configure Spinnaker Provider Account's with the
+cloud provider IAM credentials.
+
+This project supports using a map of labels in a similar mechanism to
+Kubernetes `nodeAffinity` and `taints|tolerations` to select what gets
+deployed where.
+
+Some labels might include:
+
+- environment: staging|production
+- team: sre|product for authz
+- platform: k8s|ec2 for target
+- shared|sre|<team>: true (bool) for Project selection
+
+We can work in two directions:
+
+1. Application requirements (implemented):
+   - all app labels must match on Spinnaker `account` labels
+   - kubernetes examples: Pod selects Node, i.e: nodeAffinity
+2. Account requirements (not implemented)
+   - all Spinnaker `account` labels must match app labels
+   - k8s example: Node repels Pods, i.e: taints/tolerations
+
+You can define some default behaviour, for example:
+
+```
+    // Application selectors -- all must match account labels
+    labels: {
+      // stageBlock: null, // don't set, apps deployed to staging and production
+      // leaky abstraction - Spinnaker 'cloudProvider' dictates available
+      // pipeline stages, eg: Deploy (EC2) or DeployManifest (K8S)
+      cloudProvider: 'kubernetes',  // aws || kubernetes
+      team: null, // least privilege principle, require decision in project/app
+    },
+```
+
+Let's target Product "team" accounts instead of SRE "team" accounts in
+`example.jsonnet`:
+
+```
+grep -A3 'labels+:' tests/test-e2e.pass.jsonnet
+
+    labels+: {
+      team: 'product', // was 'sre'
+      product: true, // was 'sre: true'
+    },
+
+```
+
+Save, compile and diff again, noting the chages to `account` and other fields:
+
+```
+jsonnet example.jsonnet > example4.json
+
+diff example3.json example4.json
+
+215c215
+<             "account": "stg-us-east-1-cluster-admin",
+---
+>             "account": "stg-us-east-1-product-edit",
+218c218
+<             "credentials": "stg-us-east-1-cluster-admin",
+---
+>             "credentials": "stg-us-east-1-product-edit",
+```
 
 ## Injecting custom stages
 

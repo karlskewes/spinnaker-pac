@@ -38,8 +38,8 @@ A single pipeline is simpler to operate, results in less drift across
 environments if more than one, becomes familiar across teams and departments,
 accomplishes shorter time-to-value and lower failure rates.
 
-A single pipeline does put tension on processes and in some cases it may be
-difficult to achieve a single pipeline for an application.
+A single pipeline does put tension on processes because new artifact versions
+can pile up waiting for the existing pipeline to complete.
 
 That all said, you can add your own pipeline template files and wire up
 applications to use them.
@@ -56,6 +56,10 @@ features you might need.
 
 After exploring the tutorial have a browse through the [example/](./example/)
 directory.
+
+```
+cd example/
+```
 
 Render all jsonnet to json:
 
