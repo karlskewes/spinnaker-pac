@@ -1,12 +1,10 @@
 # Spinnaker as Code Tutorial
 
-This tutorial aims to take you through the mechanisms available to
-customize applications and pipelines so that you can use it for your own
-purpose.
+This tutorial aims to take you through the mechanisms available to customize
+applications and pipelines.
 
-This tutorial takes the approach of interacting with the jsonnet from
-a Developers point of view at first, assuming that some team has setup
-Spinnaker Kubernetes accounts, Gitlab & Docker artifacts sources for you.
+This tutorial assumes that some team has setup Spinnaker Kubernetes accounts,
+Gitlab & Docker artifacts sources for you.
 
 Table of Contents:
 
@@ -296,22 +294,23 @@ You can dive into the json to compare more specifically if you like.
 
 ## Target account selection
 
-You can select what Spinnaker Provider Account to deploy with on a per artifact
-basis.
-
 Spinnaker platform teams configure Spinnaker Provider Account's with the
-cloud provider IAM credentials.
+cloud provider IAM credentials and a map of `labels: {}`.
 
-This project supports using a map of labels in a similar mechanism to
-Kubernetes `nodeAffinity` and `taints|tolerations` to select what gets
-deployed where.
+You can select what Spinnaker Provider Account to deploy to on a per team,
+application or artifact basis by ensuring your `labels: {}` match the Provider
+account `labels: {}`.
 
-Some labels might include:
+If you are familiar with Kubernetes `nodeAffinity` and `taints|tolerations`
+then this is similar.
 
-- environment: staging|production
-- team: sre|product for authz
-- platform: k8s|ec2 for target
-- shared|sre|<team>: true (bool) for Project selection
+Some example labels:
+
+- `environment: 'staging' // or 'production'`
+- `team: 'product' // or 'sre'` for authz
+- `platform: 'kubernetes' // or 'ec2'` for target
+- `teamXYZ: true` (bool) for Project selection
+- `region: ap-southeast-2 // or 'us-east-1'`
 
 We can work in two directions:
 
@@ -367,7 +366,20 @@ diff example3.json example4.json
 
 ## Injecting custom stages
 
-TODO
+For this example, imagine we want to add integration tests to run
+after our `Deploy Manifest` stage. We can add an item to the
+`customStages: {}` object with the relevant fields. For now we will use
+a `wait` stage to keep it simple.
+
+```
+    customStages+: {
+      triggerIntegrationTests: { // key name can be anything
+        labels: { stageBlock: 'staging' }, // optional, only run in "staging"
+        stageJson: spin.wait(), // any Spinnaker stage json copied from Deck or otherwise
+        stageOrder: 4,
+      },
+    },
+```
 
 ## Adding notifications
 

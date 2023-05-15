@@ -1,9 +1,10 @@
-# One pipeline to rule them all
+# Spinnaker Pipelines as Code
 
 An opinionated framework for managing Spinnaker Applications, Pipelines and
-Projects as Code using [spin-libsonnet](https://github.com/karlskewes/spin-libsonnet).
+Projects as Code using Jsonnet and the [spin-libsonnet](https://github.com/karlskewes/spin-libsonnet)
+library.
 
-## Goals / Constraints
+## Target audience
 
 Designed for Platform teams operating Spinnaker to codify infrastructure
 concerns whilst providing an application and pipeline DSL for Product teams to
@@ -15,21 +16,23 @@ Jsonnet enables off-roading through composition which is both powerful and
 potentially undesirable. For example, targeting a different AWS account or
 Kubernetes cluster.
 
-Goals:
+## Goals
 
-- Language - custom DSL that is user focused - `artifacts`, `environments`,
-  ordering
-- Consistency - user can deploy any supported application with the same pipeline
-  format
+- Language - user focused DSL - `artifacts`, `environments`, ordering
+- Consistency - deploy any application with the same pipeline building blocks
 - Programmatic - no manual clicking through UI
 - Lightweight - easy for user to onboard new app with minimal jsonnet
 
 ## The deploy pipeline
 
-The file [deploy.jsonnet](./deploy.jsonnet) provides all key functionality in
-this repository.
+The [deploy.jsonnet](./deploy.jsonnet) pipeline is the special sauce and also
+where the complexity lies.
 
-It supports generating a single Spinnaker pipeline per Spinnaker application.
+It provides a golden path that is easy to onboard to whilst supporting ad-hoc
+pipeline extensions to cope with the messy reality of codifying business processes.
+
+The [example](./example/) structure generates a single Spinnaker pipeline per
+Spinnaker application.
 
 I believe that a single pipeline deploying through any and all environments to
 production is preferable.
@@ -41,8 +44,8 @@ accomplishes shorter time-to-value and lower failure rates.
 A single pipeline does put tension on processes because new artifact versions
 can pile up waiting for the existing pipeline to complete.
 
-That all said, you can add your own pipeline template files and wire up
-applications to use them.
+That all said, you can add your own pipeline templates and wire up applications
+to use them.
 
 ## Getting started
 
